@@ -6,15 +6,17 @@ public class Task {
     // TODO 01. Define two attributes for the Task class: one to store the task description and a second one that
     //  indicates whether the task is done or not
     private String taskDescription;  // A description of the task
-    private Boolean isComplete = false; // A boolean variable to track if the task is complete (true)
+    private Boolean isComplete; // A boolean variable to track if the task is complete (true)
 
 
     // TODO 02. Define the class constructor and the corresponding getters and setters.
     // The constructor will create a new instance of the Task class.
     // The taskDescription attribute will be set to the value of the string parameter newDescription
-    public Task(String newDescription){
-        taskDescription = newDescription;
+    public Task(){
+        this.taskDescription = "";
+        this.isComplete = false;
     }
+
     // Getter and Setter: taskDescription
     public String getTaskDescription(){
         return taskDescription;
