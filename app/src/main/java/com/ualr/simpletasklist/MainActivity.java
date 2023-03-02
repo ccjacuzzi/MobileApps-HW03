@@ -51,17 +51,24 @@ public class MainActivity extends AppCompatActivity {
     //  through the text field on the top of the screen by tapping the "+" on the right
 
     // TODO 06.01. Create a new method called onAddBtnClicked.
-    private void onAddBtnClicked(){
-        String description = binding.editTextTextPersonName.getText().toString();
-        taskList.add(description);
-        binding.editTextTextPersonName.setText("");
-    }
 
     // TODO 06.05. Invoke TaskList class' add method to ask the TaskList to
     //  add a new Task with the description provided through the text field.
 
     // TODO 06.06. Use TaskList class' toString method to get a string with the formatted task list
-    //  and display it on screen in the TextView with the id "textView"
+    //  and display it on screen in the TextView with the id "textView" (Did you mean "taskList"?)
+    private void onAddBtnClicked(){
+        // Get the string that the user types in the textview
+        String description = binding.taskDescription.getText().toString();
+        // Pass the string description into the "add" method
+        taskList.add(description);
+        // Clean the textview
+        binding.taskDescription.setText("");
+
+        // Use TaskList toString method and display the output in the "taskList"
+        binding.taskList.setText(taskList.toString());
+    }
+
 
 
     // TODO 07. Create a new functionality to delete a task from the task list

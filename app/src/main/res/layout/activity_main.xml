@@ -17,7 +17,7 @@
     <TextView
         android:id="@+id/taskList"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:text="@string/task_list_empty"
         android:gravity="center_vertical"
         android:textSize="16sp"
@@ -28,7 +28,7 @@
 
     <EditText
         android:backgroundTint="@color/colorAccent"
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/taskDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
