@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ualr.simpletasklist.databinding.ActivityMainBinding;
 import com.ualr.simpletasklist.model.TaskList;
@@ -42,8 +43,22 @@ public class MainActivity extends AppCompatActivity {
         //TODO 07.02 Bind the onDeleteBtnClicked method to the delete button, so that method is
         // triggered whenever the user clicks on that button
 
+        this.binding.deleteBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                onDeleteBtnClicked();
+            }
+        });
+
         //TODO 08.02 Bind the onDoneBtnClicked method to the done button, so the onDoneBtnClicked method is
         // triggered whenever the user clicks on that button
+        this.binding.clearBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onDoneBtnClicked();
+            }
+        });
+
     }
 
 
@@ -70,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     // TODO 07. Create a new functionality to delete a task from the task list
 
     // TODO 07.01. Create a new method called onDeleteBtnClicked.
@@ -81,6 +95,26 @@ public class MainActivity extends AppCompatActivity {
     // TODO 07.05. Use TaskList class' toString method to get a string with the formatted task list
     //  and display it on screen in the TextView with the id "textView"
 
+    private void onDeleteBtnClicked(){
+        // Get the id that the user types in
+        String id = binding.editTextTaskId.getText().toString();
+        
+        try{
+            // TODO casey_1: Update this function to check if a task with the entered id exists
+            // Convert string to int
+            int intID = Integer.parseInt(id);
+            // Pass the id to the "delete" method
+            taskList.delete(intID);
+            // Display the updated task list
+            binding.taskList.setText(taskList.toString());
+            //Clean the text input field
+            binding.editTextTaskId.setText("");
+        } catch (NumberFormatException e){
+            // Shows error if text entered cannot become an int
+            Toast.makeText(this, "Please enter an integer!", Toast.LENGTH_SHORT).show();
+        }
+        
+    }
 
     // TODO 08. Create a new functionality to mark a task as done.
 
@@ -91,5 +125,23 @@ public class MainActivity extends AppCompatActivity {
 
     // TODO 08.05. Use TaskList class' toString method to get a string with the formatted task list
     //  and display it on screen in the TextView with the id "textView"
+    private void onDoneBtnClicked(){
+        String id = binding.editTextTaskId.getText().toString();
 
+        try{
+            // TODO casey_2: Update this function to check if a task with the entered id exists
+            //  and to make sure the entered task is not already marked done.
+            // Convert string to int
+            int intID = Integer.parseInt(id);
+            // Pass the id to the "markDone" method
+            taskList.markDone(intID);
+            // Display the updated task list
+            binding.taskList.setText(taskList.toString());
+            //Clean the text input field
+            binding.editTextTaskId.setText("");
+        } catch (NumberFormatException e){
+            // Shows error if text entered cannot become an int
+            Toast.makeText(this, "Please enter an integer!", Toast.LENGTH_SHORT).show();
+        }
+    }
 }

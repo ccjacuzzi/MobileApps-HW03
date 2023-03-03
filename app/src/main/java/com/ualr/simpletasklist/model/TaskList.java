@@ -2,6 +2,7 @@ package com.ualr.simpletasklist.model;
 
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class TaskList {
 
@@ -48,11 +49,11 @@ public class TaskList {
     public String toString() {
         StringBuilder taskBuilder = new StringBuilder();
 
-        for (int i = 1; i <= tasks.size(); i++) {
-            Task task = tasks.get(i);
-            taskBuilder.append( i + " - ");
-            taskBuilder.append(task.getTaskDescription());
-            if (task.getIsComplete()){
+        // For Each Loop iterates through all entries in the hashmap
+        for (Map.Entry<Integer,Task> entry : tasks.entrySet()){
+            taskBuilder.append(entry.getKey() + " - ");
+            taskBuilder.append(entry.getValue().getTaskDescription());
+            if (entry.getValue().getIsComplete()){
                 taskBuilder.append(" - Done" + "\n");
             } else {
                 taskBuilder.append("\n");
